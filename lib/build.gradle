@@ -1,0 +1,66 @@
+plugins {
+    // Apply the java-library plugin for API and implementation separation.
+    id 'idea'
+    id 'java-library'
+    id "com.google.protobuf" version "0.9.2"
+    id "me.champeau.jmh" version "0.6.8"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.protobuf:protobuf-java:3.21.12'
+    implementation 'io.grpc:grpc-stub:1.53.0'
+    implementation 'io.grpc:grpc-protobuf:1.53.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    jmh 'org.openjdk.jmh:jmh-core:1.35'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.35'
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/protobuf'
+            srcDir 'src/main/protocolbuffers'
+            include '**/*.protodevel'
+        }
+        java {
+        }
+    }
+    test {
+        proto {
+            srcDir 'src/test/protocolbuffers'
+        }
+    }
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.21.9'
+    }
+
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0-pre2'
+        }
+    }
+
+}
+
+jmh {
+    warmupIterations = 10
+    iterations = 20
+    fork = 1
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.9.1')
+        }
+    }
+}

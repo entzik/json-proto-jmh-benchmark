@@ -1,0 +1,54 @@
+
+syntax = "proto3";
+
+option java_package = "com.thekirschners.jsonvsproto.proto";
+option java_outer_classname = "OuterMessages";
+option java_multiple_files = true;
+
+message ShortNamesStrings {
+  string sn1 = 1;
+  string sn2 = 2;
+  string sn3 = 3;
+  string sn4 = 4;
+  string sn5 = 5;
+}
+
+message ShortNamesStringsList {
+  repeated ShortNamesStrings elements = 1;
+}
+
+message LongNamesStrings {
+  string longName1 = 1;
+  string longName2 = 2;
+  string longName3 = 3;
+  string longName4 = 4;
+  string longName5 = 5;
+}
+
+message LongNamesStringsList {
+  repeated LongNamesStrings elements = 1;
+}
+
+message ShortNamesNumbers {
+  double sn1 = 1;
+  double sn2 = 2;
+  double sn3 = 3;
+  double sn4 = 4;
+  double sn5 = 5;
+}
+
+message ShortNamesNumbersList {
+  repeated ShortNamesNumbers elements = 1;
+}
+
+message LongNamesNumbers {
+  double longName1 = 1;
+  double longName2 = 2;
+  double longName3 = 3;
+  double longName4 = 4;
+  double longName5 = 5;
+}
+
+message LongNamesNumbersList {
+  repeated LongNamesNumbers elements = 1;
+}
